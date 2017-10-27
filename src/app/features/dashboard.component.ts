@@ -8,6 +8,7 @@ import { AppState } from '../reducers';
 import { Store } from '@ngrx/store';
 import { UserActions } from '../user/user.actions';
 import { User } from '../user/user.model';
+import { FocMetaService } from '../services/meta.service';
 
 @Component({
   selector: 'my-dashboard',
@@ -27,10 +28,13 @@ export class DashboardComponent implements OnDestroy, OnInit {
     private http: TransferHttp,
     private store: Store<AppState>,
     private userActions: UserActions,
+    private metaService: FocMetaService,
   ) {
     this.form = fb.group({
       name: ''
     });
+    this.form.valueChanges.subscribe(value => this.submitState());
+    this.metaService.setDefault();
     this.user$ = this.store.select(state => state.user.user);
     this.user$.takeUntil(this.destroyed$)
       .subscribe(user => { this.user = user; });

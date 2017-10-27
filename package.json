@@ -5,10 +5,14 @@
   "author": "Qdouble <qdouble@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qdouble/angular-webpack2-starter.git"
+    "url": "git+https://github.com/ansaries/angular-webpack2-starter.git"
   },
+  "engines": {
+    "node": "6.11.4"
+  },
+  "main": "server.js",
   "scripts": {
-    "postinstall": "npm run sass && npm run build:dll",
+    "postinstall": "npm install npm run sass && npm run build:dll",
     "rimraf": "rimraf",
     "webdev": "webpack-dev-server",
     "webdev:hmr": "npm run webdev -- --inline --hot",
@@ -45,7 +49,7 @@
     "prodserver": "node prodserver",
     "sass": "node-sass \"src/app/styles.scss\" \"src/app/styles.css\" --include-path node_modules --output-style compressed -q",
     "sass:watch": "node-sass -w  \"src/app/styles.scss\" \"src/app/styles.css\"  --include-path node_modules --output-style compressed -q",
-    "start": "npm run server:dev",
+    "start": "nodemon dist/server.js",
     "start:hmr": "npm run server:hmr",
     "serve80": "sudo PORT=80 node prodserver",
     "server:dev": "npm-run-all -p -r webdev sass:watch",
@@ -54,7 +58,7 @@
     "server:prod80": "npm-run-all -p -r serve80 watch:prod",
     "server:universal": "nodemon dist/server.js",
     "debug:build": "node-nightly --inspect --debug-brk node_modules/webpack/bin/webpack.js",
-    "build": "npm run build:prod",
+    "build": "npm install npm run build:prod",
     "build:aot": "npm run build:aot:prod",
     "build:aot:prod": "npm run clean:dist && npm run sass && webpack",
     "build:aot:prod:e2e": "npm run clean:dist && npm run sass && webpack",
@@ -94,7 +98,7 @@
     "@angular/core": "~4.1.0",
     "@angular/forms": "~4.1.0",
     "@angular/http": "~4.1.0",
-    "@angular/material": "2.0.0-beta.6",
+    "@angular/material": "2.0.0-beta.12",
     "@angular/platform-browser": "~4.1.0",
     "@angular/platform-browser-dynamic": "~4.1.0",
     "@angular/platform-server": "~4.1.0",
@@ -110,6 +114,7 @@
     "@ngrx/store-devtools": "3.2.4",
     "@ngrx/store-log-monitor": "3.0.2",
     "@nguniversal/express-engine": "1.0.0-beta.2",
+    "@ngx-meta/core": "^4.0.1",
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
     "cookie-parser": "1.4.3",
